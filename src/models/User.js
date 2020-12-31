@@ -12,12 +12,9 @@ class User extends Model {
     }
 
     static async hashGenerate(password) {
-        //console.log(password);
-        const newPassword =  await bcrypt.hash(password, 10);
-        //console.log(newPassword);
-        return newPassword;
+        const cryptedPassword =  await bcrypt.hash(password, 10);
+        return cryptedPassword;
     }
 }
-
 
 module.exports = User;
