@@ -1,0 +1,11 @@
+{
+    "dialect": "mysql",
+    "username": "root",
+    "password": "32317461Henrique@",
+    "host": "localhost",
+    "database": "auth",
+    "define": {
+        "timestamps": true,
+        "underscored": true
+    }
+}
