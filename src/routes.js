@@ -1,13 +1,21 @@
-const express = require('express');
-const routes = express.Router();
-const UserController = require('./controllers/UserController');
-const authMiddleware = require('./middlewaers/auth');
+const routes = require('express').Router();
 
-//Routes user
-routes.post('/auth/register', UserController.createUser);
-routes.post('/auth/authenticate', UserController.authenticateUser);
+//controllers
+const UserController = require('./app/controllers/UserController');
+const SessionController = require('./app/controllers/SessionController');
 
-//Routes authenticate
-routes.get('/project', authMiddleware, (request, response) => response.send({ok: true, userId: request.userId}));
+//Middlewares
+const authMiddleware = require('./app/middlewares/authMiddlewares');
+
+//user
+routes.post('/store', UserController.store);
+routes.get('/', UserController.index);
+
+//section
+routes.post('/login', SessionController.login);
+routes.put('/forgot_password', SessionController.forgotPassword);
+routes.put('/forgot_password/reset_password', SessionController.resetPassword);
+//task
+routes.post('/task', authMiddleware, (req, res) => res.send({ ok: "true"}));
 
 module.exports = routes;
