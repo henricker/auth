@@ -15,6 +15,7 @@ module.exports = {
             user.password = undefined;
             return res.send(user);
         }catch(err) {
+            console.log(err);
             res.status(400).send({ error: "Create user error!"});
         }
     },
