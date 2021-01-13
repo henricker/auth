@@ -93,10 +93,10 @@
 
 ```json
     //Case the user is authenticated 
-    //create req['userId'] to the route access the user informations
+    //create req.userId to the route access the user informations
 
     {
-        "ok": true;
+        "ok": true
     }
 
     //Case dont exists
