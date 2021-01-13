@@ -8,6 +8,7 @@
     - Express
     - Json web token (JWT)
     - Bcrypt
+    - NodeMailer
 
 ### Register user route (POST)
 - To create one user
@@ -69,7 +70,7 @@
 
     /*
         Case email dont exists
-        response:
+        response: BAD REQUEST (400)
     */
 
    {
@@ -78,7 +79,7 @@
 
    /*
         Case password dont matches
-        response:
+        response:  BAD REQUEST (400)
    */
   {
         "error": "Password incorrect"
@@ -99,13 +100,13 @@
         "ok": true
     }
 
-    //Case dont exists
+    //Case dont exists: Authorization error (401)
 
     {
         "error":"token not provided"
     }
 
-    //Case the token dont contains "Bearer token..."
+    //Case the token dont contains "Bearer token..."  Authorization error (401)
     
     {
         "erro": "token malformatted"
@@ -131,7 +132,7 @@
         },
         {
         "id": 7,
-        "name": "nome qualquer",
+        "name": "any name",
         "email": "email@email.com",
         "createdAt": "2021-01-13T18:02:50.000Z",
         "updatedAt": "2021-01-13T18:02:50.000Z"
@@ -139,3 +140,74 @@
     }
 ```
 
+## Forgot Password route (PUT)
+- The user sends his email address, after that the system will create a token and send an email to the address provided containing the credentials to change the password. 
+This token will be saved in the database and the time to expire this token (1 hour after creation) as well.
+
+- On this route, I use the NodeMailer module to perform e-mail sending operations
+
+- See the exemple bellow:
+
+```json
+
+//request:
+{
+    "email": "henriquevieira@alu.ufc.br"
+},
+//Case sucessfully, this response:
+{
+    "ok": "Email sended with sucessfully!"
+},
+//Case email dont exists: BAD REQUEST (400)
+{
+    "error": "User not found"
+}
+```
+
+- Email received!
+![email](./presentation_images/email.png)
+
+### reset password route (PUT)
+- On this route, you will receive the email address and shipping notice in the email, and the new password.
+
+```json
+{
+
+//request:
+{
+
+    "email": "henriquevieira@alu.ufc.br",
+    "token":"9ea9562d5f93c780f1f0c26a010b131fbda68eb1",
+    "newPassword": "123newPassword:p"
+
+},
+
+//Case sucessfully: OK
+{
+
+    "ok": "Your password were settings with sucessfully"
+
+}
+
+//Case invalid token: BAD REQUEST (400)
+{
+    "error": "Token invalid"
+}
+
+//Case the token expires: BAD REQUEST (400)
+{
+    "error": "Token expired, generate a new one"
+}
+
+```
+
+### Get started
+- Clone this repository: 
+    - git clone https://github.com/henricker/auth
+- Install all dependecies:
+    - Open the terminal in this repository
+    - type: yarn
+- Set the configurations archives in ./src/config
+- Create one database called 'auth' in SQL database
+- Made it, jus run!:
+    - yarn dev
