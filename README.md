@@ -9,10 +9,12 @@
     - Json web token (JWT)
     - Bcrypt
 
-### Fist: register user route (POST)
-- To create one user, in https://localhost:port/store send one request, show the exemple bellow:
+### Register user route (POST)
+- To create one user
+- Access: https://localhost:port/store 
+- See the exemple bellow:
 
-```javascript
+```json
 
     //request
     
@@ -33,10 +35,12 @@
     
 ```
 
-### Second: List all users (GET)
-- To list all users, just acess [https://localhost:port/]
+### Login (POST)
+- Return information users and one token to authenticate in task route.
+- Access: [https://localhost:port/login]
+- See the exemple bellow:
 
-```javascript
+```json
     
     //request
     {
@@ -46,8 +50,9 @@
 
     /*
         Case Sucessfully
-        
-        return user and one token to authorization others routes than needed user authenticate
+
+        Returns the user and an authentication token, in which this token will be used to validate that the user is authenticated on other routes
+        response:
     */
     {
         
@@ -61,5 +66,51 @@
     
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNjEwNTYyNTg4fQ.tg4PlnqhpSFZuCK0USB1QdN2eTVFvTzoTwwpLZj09ac"
     }
+
+    /*
+        Case email dont exists
+        response:
+    */
+
+   {
+        "error": "User not found"
+   }
+
+   /*
+        Case password dont matches
+        response:
+   */
+  {
+        "error": "Password incorrect"
+  }
+
+```
+
+### Route task (GET):
+- This is a generic route where the user must be authenticated in order to enter. Otherwise, access is denied
+- Acess: https://localhost:port/task
+- See the exemple bellow:
+
+```json
+    //Case the user is authenticated 
+    //create req['userId'] to the route access the user informations
+
+    {
+        "ok": true;
+    }
+
+    //Case dont exists
+
+    {
+        "error":"token not provided"
+    }
+
+    //Case the token dont contains "Bearer token..."
+    
+    {
+        "erro": "token malformatted"
+    }
+
+
 
 ```
