@@ -11,7 +11,7 @@
 
 ### Register user route (POST)
 - To create one user
-- Access: https://localhost:port/store 
+- Access: https://localhost:3333/store 
 - See the exemple bellow:
 
 ```json
@@ -37,7 +37,7 @@
 
 ### Login (POST)
 - Return information users and one token to authenticate in task route.
-- Access: [https://localhost:port/login]
+- Access: [https://localhost:3333/login]
 - See the exemple bellow:
 
 ```json
@@ -88,7 +88,7 @@
 
 ### Route task (GET):
 - This is a generic route where the user must be authenticated in order to enter. Otherwise, access is denied
-- Acess: https://localhost:port/task
+- Acess: https://localhost:3333/task
 - See the exemple bellow:
 
 ```json
@@ -114,3 +114,28 @@
 
 
 ```
+
+### Get list of all users (GET)
+- Return one list where contains all users in the database
+- Access: https://localhost:3333/
+- See the exemple bellow: 
+
+```json
+    {
+        {
+        "id": 6,
+        "name": "Henrique Vieira",
+        "email": "henriquevieira@alu.ufc.br",
+        "createdAt": "2021-01-13T18:02:48.000Z",
+        "updatedAt": "2021-01-13T18:02:48.000Z"
+        },
+        {
+        "id": 7,
+        "name": "nome qualquer",
+        "email": "email@email.com",
+        "createdAt": "2021-01-13T18:02:50.000Z",
+        "updatedAt": "2021-01-13T18:02:50.000Z"
+        }
+    }
+```
+
