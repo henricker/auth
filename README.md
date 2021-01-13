@@ -62,7 +62,7 @@
         "email": "henriquevieira@alu.ufc.br",
         "createdAt": "2021-01-13T18:02:48.000Z",
         "updatedAt": "2021-01-13T18:02:48.000Z"
-        }
+        },
     
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNjEwNTYyNTg4fQ.tg4PlnqhpSFZuCK0USB1QdN2eTVFvTzoTwwpLZj09ac"
     }
